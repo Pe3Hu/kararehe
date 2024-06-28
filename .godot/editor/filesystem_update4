@@ -1,0 +1,16 @@
+res://scene/3/framework.tscn
+res://scene/2/planet.tscn
+res://scene/5/clash.tscn
+res://scene/6/circuit.tscn
+res://scene/6/chip.tscn
+res://scene/3/framework.gd
+res://scene/5/clash.gd
+res://script/Global.gd
+res://scene/1/god.tscn
+res://scene/1/god.gd
+res://scene/3/core.tscn
+res://scene/0/game.gd
+res://scene/3/module.tscn
+res://scene/2/planet.gd
+res://scene/3/module.gd
+res://scene/3/core.gd

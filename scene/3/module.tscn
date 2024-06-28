@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5ya2dkuik5e4"]
+
+[ext_resource type="Script" path="res://scene/3/module.gd" id="1_6b7xm"]
+[ext_resource type="PackedScene" uid="uid://c5wji4w3744nj" path="res://scene/0/token.tscn" id="2_f3igm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a512j"]
+
+[node name="Module" type="MarginContainer"]
+script = ExtResource("1_6b7xm")
+
+[node name="BG" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a512j")
+
+[node name="Gear" parent="." instance=ExtResource("2_f3igm")]
+layout_mode = 2

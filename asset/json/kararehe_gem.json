@@ -1,0 +1,26 @@
+[
+ {
+  "title": "gear 0",
+  "gem 0": 1,
+  "gem 1": 2,
+  "gem 2": 5,
+  "gem 3": 8,
+  "gem 4": 9
+ },
+ {
+  "title": "gear 1",
+  "gem 0": 6,
+  "gem 1": 7,
+  "gem 2": 3,
+  "gem 3": 4,
+  "gem 4": 5
+ },
+ {
+  "title": "gear 2",
+  "gem 0": 8,
+  "gem 1": 6,
+  "gem 2": 7,
+  "gem 3": 3,
+  "gem 4": 1
+ }
+]

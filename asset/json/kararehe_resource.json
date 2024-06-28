@@ -1,0 +1,20 @@
+[
+ {
+  "title": "head",
+  "energy": 7,
+  "metal": 2,
+  "liquid": 6
+ },
+ {
+  "title": "torso",
+  "energy": 5,
+  "metal": 9,
+  "liquid": 1
+ },
+ {
+  "title": "limb",
+  "energy": 3,
+  "metal": 4,
+  "liquid": 8
+ }
+]
