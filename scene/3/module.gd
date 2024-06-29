@@ -3,13 +3,15 @@ extends MarginContainer
 
 #region var
 @onready var bg = $BG
-@onready var gear = $Gear
+@onready var gem = $Gem
+@onready var purpose = $Purpose
 
 var proprietor = null
 var grid = null
 var orientation = null
 var neighbors = {}
 var directions = {}
+var gear = null
 #endregion
 
 
@@ -24,59 +26,65 @@ func set_attributes(input_: Dictionary) -> void:
 
 func init_basic_setting() -> void:
 	proprietor.grids[grid] = self
-	#if orientation == "core":
-	#	type.visible = false
-
-
-func set_type(type_: String) -> void:
-	var input = {}
-	input.proprietor = self
-	input.type = "gear"
-	input.subtype = type_
-	input.value = grid.y * 5  + grid.x
-	gear.set_attributes(input)
-	gear.custom_minimum_size = Global.vec.size.module
 	
-	gear.init_bg()
-	gear.set_bg_color(Global.color.module[type_])
+	init_tokens()
+
+
+func set_gear(gear_: String) -> void:
+	gear = gear_
 	
-	#for specialization in Global.arr.specialization:
-		#var weight = Global.dict.specialization.title[type_][specialization]
-		#proprietor.core.change_specialization_value(specialization, weight)
+	init_bg()
+	set_bg_color(Global.color.module[gear_])
 
 
-func get_available_neighbors() -> Array:
-	var available = []
+func init_bg() -> void:
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color.SLATE_GRAY
+	bg.set("theme_override_styles/panel", style)
+
+
+func set_bg_color(color_: Color) -> void:
+	var style = bg.get("theme_override_styles/panel")
+	style.bg_color = color_
+
+
+func init_tokens() -> void:
+	var keys = ["gem", "purpose"]
+	
+	for key in keys:
+		var token = get(key)
+		
+		var input = {}
+		input.proprietor = self
+		input.type = key
+		input.subtype = "blank"
+		input.value = grid.y * 5  + grid.x
+		token.set_attributes(input)
+		token.custom_minimum_size = Global.vec.size.module
+
+
+func set_gem(subtype_: String) -> void:
+	gem.set_subtype(subtype_)
+
+
+func roll_purpose() -> void:
+	var exceptions = []
 	
 	for neighbor in neighbors:
-		if !neighbor.fade and neighbor.pillar == null:
-			available.append(neighbor)
+		if neighbor.purpose.subtype != "blank":
+			exceptions.append(neighbor.purpose.subtype)
 	
-	return available
-
-
-func get_count_available_neighbors() -> int:
-	var available = 0
+	var weights = {}
 	
-	for neighbor in neighbors:
-		if !neighbor.fade and neighbor.pillar == null:
-			available += 1
+	for resource in Global.dict.resource.title[gear]:
+		var weight = Global.dict.resource.title[gear][resource]
+		
+		for _purpose in Global.dict.purpose.resource[resource]:
+			if !exceptions.has(_purpose):
+				weights[_purpose] = weight
 	
-	return available 
-
-
-func clean() -> void:
-	for neighbor in neighbors:
-		neighbor.neighbors.erase(self)
-	
-	for direction in directions:
-		var neighbor = directions[direction]
-		neighbor.directions.erase(-direction)
-	
-	proprietor.grids.erase(grid)
-	
-	get_parent().remove_child(self)
-	queue_free()
+	var subtype = Global.get_random_key(weights)
+	purpose.set_subtype(subtype)
 #endregion
 
 

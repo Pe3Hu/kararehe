@@ -9,9 +9,12 @@
 script = ExtResource("1_6b7xm")
 
 [node name="BG" type="Panel" parent="."]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a512j")
 
-[node name="Gear" parent="." instance=ExtResource("2_f3igm")]
+[node name="Gem" parent="." instance=ExtResource("2_f3igm")]
+visible = false
+layout_mode = 2
+
+[node name="Purpose" parent="." instance=ExtResource("2_f3igm")]
 layout_mode = 2

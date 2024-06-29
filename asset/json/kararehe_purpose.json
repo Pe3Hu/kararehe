@@ -1,0 +1,47 @@
+[
+ {
+  "resource": "energy",
+  "title": "computing",
+  "gist": "critical"
+ },
+ {
+  "resource": "energy",
+  "title": "shielding",
+  "gist": "shield"
+ },
+ {
+  "resource": "energy",
+  "title": "generating",
+  "gist": "reinforcement"
+ },
+ {
+  "resource": "liquid",
+  "title": "accelerating",
+  "gist": "reload"
+ },
+ {
+  "resource": "liquid",
+  "title": "maneuvering",
+  "gist": "evasion"
+ },
+ {
+  "resource": "liquid",
+  "title": "distilling",
+  "gist": "reinforcement"
+ },
+ {
+  "resource": "metal",
+  "title": "plating",
+  "gist": "armor"
+ },
+ {
+  "resource": "metal",
+  "title": "repairing",
+  "gist": "recovery"
+ },
+ {
+  "resource": "metal",
+  "title": "casting",
+  "gist": "reinforcement"
+ }
+]

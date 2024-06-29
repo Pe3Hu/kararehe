@@ -38,7 +38,6 @@ func init_modules() -> void:
 			var grid = Vector2i(_j, _i)
 			add_module(grid)
 	
-	
 	var description = Global.dict.framework.title[totem]
 	
 	for order in description.circuits:
@@ -47,10 +46,12 @@ func init_modules() -> void:
 		
 		for index in indexs:
 			var module = modules.get_child(index)
-			module.set_type(type)
+			module.set_gear(type)
 	
 	update_module_neighbors()
 	init_axes()
+	init_gems()
+	init_purposes()
 
 
 func add_module(grid_: Vector2i) -> void:
@@ -104,5 +105,48 @@ func init_axes() -> void:
 		for _i in Global.num.framework.k:
 			module = module.directions[directon]
 			axes[type].append(module)
+
+
+func init_gems() -> void:
+	var gears = []
+	gears.append_array(Global.arr.gear)
+	gears.shuffle()
+	var gems = []
+	gems.append_array(Global.arr.gem)
+	gems.erase("diamond")
+	gems.shuffle()
+	
+	var weights = {}
+	var a  = Global.dict.gem.gear
+	
+	for _i in gears.size():
+		var gear = gears[_i]
+		weights[gear] = {}
+		
+		for _j in gems.size():
+			var gem = gems[_j]
+			weights[gear][gem] = Global.dict.gem.gear[_i][_j]
+	
+	for module in modules.get_children():
+		var gem = "diamond"
+		
+		if module.orientation != "nexus":
+			gem = Global.get_random_key(weights[module.gear])
+		
+		module.set_gem(gem)
+
+
+func init_purposes() -> void:
+	var options = []
+	
+	for module in modules.get_children():
+		if module.orientation != "nexus":
+			options.append(module)
+	
+	options.shuffle()
+	
+	while !options.is_empty():
+		var module = options.pop_front()
+		module.roll_purpose()
 #endregion
 

@@ -28,6 +28,8 @@ func init_tokens() -> void:
 
 
 func init_vertexs() -> void:
+	vertexs.set("theme_override_constants/h_separation", Global.num.offset.vertex)
+	vertexs.set("theme_override_constants/v_separation", Global.num.offset.vertex)
 	grids.vertex = {}
 	
 	for _i in Global.num.core.n:
@@ -50,6 +52,8 @@ func add_vertex(grid_: Vector2i) -> void:
 
 
 func init_faces() -> void:
+	faces.set("theme_override_constants/h_separation", Global.num.offset.face)
+	faces.set("theme_override_constants/v_separation", Global.num.offset.face)
 	grids.face = {}
 	var subtypes = roll_subtypes()
 	
@@ -67,8 +71,19 @@ func roll_subtypes() -> Dictionary:
 	description.grids = []
 	description.subtypes = {}
 	description.resources = []
-	description.resources.append_array(Global.arr.resource)
+	
+	var resource = Global.arr.resource.pick_random()
+	
+	for _i in Global.num.core.n - 1:
+		description.resources.append_array(Global.arr.resource)
+	
 	description.resources.shuffle()
+	
+	for _i in Global.num.core.n - 1:
+		description.resources.erase(resource)
+	
+	for _i in Global.num.core.n - 1:
+		description.resources.insert(0, resource)
 	
 	for _i in Global.num.core.n - 1:
 		description.cols.append([])
@@ -86,20 +101,17 @@ func roll_subtypes() -> Dictionary:
 	return description.subtypes
 
 
-func roll_grid(description_: Dictionary, resource_: Variant) -> void:
-	var resource = resource_
+func roll_grid(description_: Dictionary, grid_: Variant) -> void:
+	var resource = description_.resources.pop_front()
 	var options = []
+	var grid = grid_
 	
-	if resource_ == null:
-		resource = description_.resources.front()
-	
+	if grid_ == null:
 		for _grid in description_.grids:
 			if !description_.cols[_grid.x].has(resource) and !description_.rows[_grid.y].has(resource):
 				options.append(_grid)
-	else:
-		options = get_last_ones(description_, resource_)
 		
-	var grid = options.pick_random()
+		grid = options.pick_random()
 	
 	if grid == null:
 		pass
@@ -113,27 +125,31 @@ func roll_grid(description_: Dictionary, resource_: Variant) -> void:
 	if !description_.rows[grid.y].has(resource):
 		description_.rows[grid.y].append(resource)
 	
-	if options.size() == 1:
-		description_.resources.erase(resource)
 	
-	#set_last_one(description_)
+	set_all_last_ones(description_)
 
 
-func set_last_one(description_: Dictionary) -> void:
+func set_all_last_ones(description_: Dictionary) -> void:
 	for col in description_.cols:
 		if col.size() == Global.num.core.n - 2:
 			var index = description_.cols.find(col)
-			var grid = get_last_one(description_, "col", index)
-			roll_grid(description_, grid)
+			var grid = get_last_one_grid(description_, "col", index)
+			
+			if description_.grids.has(grid):
+				roll_grid(description_, grid)
+				return
 	
 	for row in description_.rows:
 		if row.size() == Global.num.core.n - 2:
 			var index = description_.rows.find(row)
-			var grid = get_last_one(description_, "row", index)
-			roll_grid(description_, grid)
+			var grid = get_last_one_grid(description_, "row", index)
+			
+			if description_.grids.has(grid):
+				roll_grid(description_, grid)
+				return
 
 
-func get_last_one(description_: Dictionary, type_: String, index_: int) -> Vector2i:
+func get_last_one_grid(description_: Dictionary, type_: String, index_: int) -> Variant:
 	var donor = description_[type_+"s"][index_]
 	
 	for _i in Global.num.core.n - 1:
@@ -146,27 +162,45 @@ func get_last_one(description_: Dictionary, type_: String, index_: int) -> Vecto
 				grid.y = index_
 		
 		if !donor.has(grid):
-			return grid
+			if description_.grids.has(grid):
+				var resource = get_last_one_resource(description_, grid)
+				description_.resources.erase(resource)
+				description_.resources.insert(0, resource)
+				return grid
 	
-	return -Vector2i.ONE
+	return null
+
+#
+#func get_last_one_grids(description_: Dictionary, resource_: String) -> Array:
+	#var options = []
+	#
+	#for col in description_.cols:
+		#if col.size() == Global.num.core.n - 2 and !col.has(resource_):
+			#var index = description_.cols.find(col)
+			#var grid = get_last_one_grid(description_, "col", index)
+			#options.append(grid)
+	#
+	#for row in description_.rows:
+		#if row.size() == Global.num.core.n - 2 and !row.has(resource_):
+			#var index = description_.rows.find(row)
+			#var grid = get_last_one_grid(description_, "row", index)
+			#options.append(grid)
+	#
+	#return options
 
 
-func get_last_ones(description_: Dictionary, resource_: String) -> Array:
+func get_last_one_resource(description_: Dictionary, grid_: Vector2i) -> Variant:
 	var options = []
+	options.append_array(Global.arr.resource)
 	
-	for col in description_.cols:
-		if col.size() == Global.num.core.n - 2 and !col.has(resource_):
-			var index = description_.cols.find(col)
-			var grid = get_last_one(description_, "col", index)
-			options.append(grid)
+	for grid in description_.subtypes:
+		if grid.x == grid_.x or grid.y == grid_.y:
+			options.erase(description_.subtypes[grid])
 	
-	for row in description_.rows:
-		if row.size() == Global.num.core.n - 2 and !row.has(resource_):
-			var index = description_.rows.find(row)
-			var grid = get_last_one(description_, "row", index)
-			options.append(grid)
+	if options.size() == 1:
+		return options.front()
 	
-	return options
+	return null
 
 
 func add_face(grid_: Vector2i, subtype_: String) -> void:

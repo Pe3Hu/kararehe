@@ -27,6 +27,8 @@ func init_arr() -> void:
 	arr.axis = ["first", "second", "third", "fourth"]
 	
 	arr.resource = ["energy", "metal", "liquid"]
+	arr.damage = ["blind shell", "fire", "explosion", "acid", "electricity", "laser"]
+	arr.gem = ["diamond", "ruby", "amber", "emerald", "sapphire", "amethyst"]
 
 
 func init_num() -> void:
@@ -43,6 +45,10 @@ func init_num() -> void:
 	
 	num.core = {}
 	num.core.n = 4
+	
+	num.offset = {}
+	num.offset.vertex = 8
+	num.offset.face = 8
 
 
 func init_dict() -> void:
@@ -52,6 +58,9 @@ func init_dict() -> void:
 	init_framework()
 	init_resource()
 	init_core()
+	init_gem()
+	init_purpose()
+	init_vulnerability()
 
 
 func init_neighbor() -> void:
@@ -139,7 +148,6 @@ func init_core() -> void:
 	dict.core = {}
 	dict.core.grid = {}
 	var exceptions = ["title"]
-	var pair = ["row", "col"]
 	
 	var path = "res://asset/json/kararehe_core.json"
 	var array = load_data(path)
@@ -148,7 +156,6 @@ func init_core() -> void:
 		var words = {}
 		words.primary = core.title.split(" ")
 		var y = int(words.primary[1])
-		var data = {}
 		
 		for key in core:
 			if !exceptions.has(key):
@@ -157,6 +164,76 @@ func init_core() -> void:
 				var grid = Vector2i(x, y)
 				
 				dict.core.grid[grid] = core[key]
+
+
+func init_gem() -> void:
+	dict.gem = {}
+	dict.gem.grid = {}
+	dict.gem.gear = {}
+	var exceptions = ["title"]
+	
+	var path = "res://asset/json/kararehe_gem.json"
+	var array = load_data(path)
+	
+	for gem in array:
+		var words = {}
+		words.primary = gem.title.split(" ")
+		var y = int(words.primary[1])
+		
+		if !dict.gem.gear.has(y):
+			dict.gem.gear[y] = []
+		
+		for key in gem:
+			if !exceptions.has(key):
+				words.secondary = key.split(" ")
+				var x = int(words.secondary[1])
+				var grid = Vector2i(x, y)
+				
+				dict.gem.grid[grid] = gem[key]
+				
+				dict.gem.gear[y].append(gem[key])
+
+
+func init_purpose() -> void:
+	dict.purpose = {}
+	dict.purpose.title = {}
+	dict.purpose.resource = {}
+	var exceptions = ["title"]
+	
+	var path = "res://asset/json/kararehe_purpose.json"
+	var array = load_data(path)
+	
+	for purpose in array:
+		var data = {}
+		
+		for key in purpose:
+			if !exceptions.has(key):
+				data[key] = purpose[key]
+	
+		dict.purpose.title[purpose.title] = data
+		
+		if !dict.purpose.resource.has(purpose.resource):
+			dict.purpose.resource[purpose.resource] = []
+		
+		dict.purpose.resource[purpose.resource].append(purpose.title)
+
+
+func init_vulnerability() -> void:
+	dict.vulnerability = {}
+	dict.vulnerability.title = {}
+	var exceptions = ["title"]
+	
+	var path = "res://asset/json/kararehe_vulnerability.json"
+	var array = load_data(path)
+	
+	for vulnerability in array:
+		var data = {}
+		
+		for key in vulnerability:
+			if !exceptions.has(key):
+				data[key] = float(vulnerability[key]) / 100
+	
+		dict.vulnerability.title[vulnerability.title] = data
 
 
 func init_scene() -> void:
@@ -202,32 +279,15 @@ func init_color():
 	var h = 360.0
 	
 	color.module = {}
-	color.module.head = Color.from_hsv(330 / h, 0.6, 0.7)
-	color.module.limb = Color.from_hsv(300 / h, 0.6, 0.7)
-	color.module.torso = Color.from_hsv(270 / h, 0.6, 0.7)
+	color.module.head = Color.from_hsv(60 / h, 0.6, 0.7)
+	color.module.limb = Color.from_hsv(210 / h, 0.6, 0.7)
+	color.module.torso = Color.from_hsv(330 / h, 0.6, 0.7)
 	
 	color.specialization = {}
 	color.specialization.lethality = Color.from_hsv(0 / h, 0.6, 0.7)
 	color.specialization.sensory = Color.from_hsv(60 / h, 0.6, 0.7)
 	color.specialization.mobility = Color.from_hsv(120 / h, 0.6, 0.7)
 	color.specialization.durability = Color.from_hsv(210 / h, 0.6, 0.7)
-	
-	color.impact = {}
-	color.impact.offense = {}
-	color.impact.offense.maximum = Color.from_hsv(0 / h, 0.7, 1.0)
-	color.impact.offense.minimum = Color.from_hsv(0 / h, 0.7, 0.6)
-	color.impact.defense = {}
-	color.impact.defense.maximum = Color.from_hsv(210 / h, 0.7, 1.0)
-	color.impact.defense.minimum = Color.from_hsv(210 / h, 0.7, 0.6)
-	
-	color.summand = {}
-	color.summand.spread = Color.from_hsv(180 / h, 0.55, 0.6)
-	color.summand.amplifier = Color.from_hsv(330 / h, 0.55, 0.6)
-	
-	color.indicator = {}
-	color.indicator.energy = {}
-	color.indicator.energy.fill = Color.from_hsv(30 / h, 0.9, 0.7)
-	color.indicator.energy.background = Color.from_hsv(30 / h, 0.5, 0.9)
 
 
 func save(path_: String, data_: String):
