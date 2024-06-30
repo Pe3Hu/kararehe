@@ -1,0 +1,98 @@
+[
+ {
+  "index": 0,
+  "damage": "electricity",
+  "power min": 2,
+  "power max": 26,
+  "preparation": 60,
+  "type": "standard"
+ },
+ {
+  "index": 1,
+  "damage": "acid",
+  "power min": 4,
+  "power max": 24,
+  "preparation": 60,
+  "type": "standard"
+ },
+ {
+  "index": 2,
+  "damage": "explosion",
+  "power min": 6,
+  "power max": 22,
+  "preparation": 60,
+  "type": "standard"
+ },
+ {
+  "index": 3,
+  "damage": "fire",
+  "power min": 8,
+  "power max": 20,
+  "preparation": 60,
+  "type": "standard"
+ },
+ {
+  "index": 4,
+  "damage": "blind shell",
+  "power min": 10,
+  "power max": 18,
+  "preparation": 60,
+  "type": "standard"
+ },
+ {
+  "index": 5,
+  "damage": "laser",
+  "power min": 12,
+  "power max": 16,
+  "preparation": 60,
+  "type": "standard"
+ },
+ {
+  "index": 6,
+  "damage": "acid",
+  "power min": 1,
+  "power max": 6,
+  "preparation": 15,
+  "type": "small"
+ },
+ {
+  "index": 7,
+  "damage": "electricity",
+  "power min": 1,
+  "power max": 13,
+  "preparation": 30,
+  "type": "small"
+ },
+ {
+  "index": 8,
+  "damage": "fire",
+  "power min": 6,
+  "power max": 15,
+  "preparation": 45,
+  "type": "small"
+ },
+ {
+  "index": 9,
+  "damage": "laser",
+  "power min": 15,
+  "power max": 20,
+  "preparation": 75,
+  "type": "big"
+ },
+ {
+  "index": 10,
+  "damage": "blind shell",
+  "power min": 15,
+  "power max": 27,
+  "preparation": 90,
+  "type": "big"
+ },
+ {
+  "index": 11,
+  "damage": "explosion",
+  "power min": 12,
+  "power max": 44,
+  "preparation": 120,
+  "type": "big"
+ }
+]

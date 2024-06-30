@@ -117,7 +117,6 @@ func init_gems() -> void:
 	gems.shuffle()
 	
 	var weights = {}
-	var a  = Global.dict.gem.gear
 	
 	for _i in gears.size():
 		var gear = gears[_i]

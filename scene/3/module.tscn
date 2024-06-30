@@ -13,8 +13,8 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a512j")
 
 [node name="Gem" parent="." instance=ExtResource("2_f3igm")]
-visible = false
 layout_mode = 2
 
 [node name="Purpose" parent="." instance=ExtResource("2_f3igm")]
+visible = false
 layout_mode = 2

@@ -25,10 +25,14 @@ func init_arr() -> void:
 	arr.gear = ["head", "limb", "torso"]
 	arr.role = ["offense", "defense"]
 	arr.axis = ["first", "second", "third", "fourth"]
+	arr.orientation = ["nexus", "axis", "center", "corner"]
 	
 	arr.resource = ["energy", "metal", "liquid"]
 	arr.damage = ["blind shell", "fire", "explosion", "acid", "electricity", "laser"]
 	arr.gem = ["diamond", "ruby", "amber", "emerald", "sapphire", "amethyst"]
+	arr.condition = ["orientation", "gear"]
+	arr.sign = ["less", "equal", "more"]
+	arr.restriction = [0, 1, 2]
 
 
 func init_num() -> void:
@@ -40,7 +44,7 @@ func init_num() -> void:
 	num.framework.n = num.framework.k * 2 + 1
 	
 	num.module = {}
-	num.module.a = 36
+	num.module.a = 48
 	num.module.r = num.module.a / sqrt(2)
 	
 	num.core = {}
@@ -49,6 +53,10 @@ func init_num() -> void:
 	num.offset = {}
 	num.offset.vertex = 8
 	num.offset.face = 8
+	
+	num.pattern = {}
+	num.pattern.rotations = 4
+	
 
 
 func init_dict() -> void:
@@ -61,6 +69,8 @@ func init_dict() -> void:
 	init_gem()
 	init_purpose()
 	init_vulnerability()
+	init_pattern()
+	init_weapon()
 
 
 func init_neighbor() -> void:
@@ -236,6 +246,108 @@ func init_vulnerability() -> void:
 		dict.vulnerability.title[vulnerability.title] = data
 
 
+func init_pattern() -> void:
+	dict.damage = {}
+	dict.damage.pattern = {}
+	
+	dict.pattern = {}
+	dict.pattern.title = {}
+	dict.pattern.rotations = {}
+	dict.pattern.reflections = {}
+	var exceptions = ["title"]
+	
+	var path = "res://asset/json/kararehe_pattern.json"
+	var array = load_data(path)
+	
+	for pattern in array:
+		var data = {}
+		pattern.size = int(pattern.size)
+		data.directions = []
+		
+		for key in pattern:
+			if !exceptions.has(key):
+				if key.contains("direction"):
+					var direction = str_to_var(pattern[key])
+					data.directions.append(direction)
+				else:
+					if key == "damages":
+						var words = pattern[key].split(",")
+						data[key] = words
+					else:
+						data[key] = pattern[key]
+	
+		dict.pattern.title[pattern.title] = data
+		
+		if !dict.damage.pattern.has(pattern.size):
+			dict.damage.pattern[pattern.size] = {}
+		
+		for damage in data.damages:
+			if !dict.damage.pattern[pattern.size].has(damage):
+				dict.damage.pattern[pattern.size][damage] = []
+			
+			dict.damage.pattern[pattern.size][damage].append(pattern.title)
+	
+	for letter in dict.pattern.title:
+		dict.pattern.rotations[letter] = []
+		
+		if dict.pattern.title[letter].variation != "none":
+			for _i in num.pattern.rotations:
+				var rotations = []
+				var angle = PI * 2 / num.pattern.rotations * _i
+				
+				for direction in dict.pattern.title[letter].directions:
+					var rotation = Vector2(direction).rotated(angle)
+					rotations.append(Vector2i(rotation))
+				
+				dict.pattern.rotations[letter].append(rotations)
+		else:
+			dict.pattern.rotations[letter].append(dict.pattern.title[letter].directions)
+		
+		
+		if dict.pattern.title[letter].variation == "reflection":
+			dict.pattern.reflections[letter] = []
+			
+			for directions in dict.pattern.rotations[letter]:
+				var reflections = []
+				
+				for direction in directions:
+					var reflection = Vector2i(-direction.x, direction.y)
+					reflections.append(reflection)
+				
+				dict.pattern.reflections[letter].append(reflections)
+
+
+func init_weapon() -> void:
+	dict.weapon = {}
+	dict.weapon.index = {}
+	dict.weapon.damage = {}
+	var exceptions = ["index"]
+	
+	var path = "res://asset/json/kararehe_weapon.json"
+	var array = load_data(path)
+	
+	for weapon in array:
+		weapon.index = int(weapon.index)
+		var data = {}
+		data.powers = {}
+		
+		for key in weapon:
+			if !exceptions.has(key):
+				
+				if key.contains("power"):
+					var words = key.split(" ")
+					data.powers[words[1]] = weapon[key]
+				else:
+					data[key] = weapon[key]
+	
+		dict.weapon.index[weapon.index] = data
+		
+		if !dict.weapon.damage.has(weapon.damage):
+			dict.weapon.damage[weapon.damage] = []
+		
+		dict.weapon.damage[weapon.damage].append(weapon.index)
+
+
 func init_scene() -> void:
 	scene.token = load("res://scene/0/token.tscn")
 	
@@ -245,6 +357,8 @@ func init_scene() -> void:
 	scene.planet = load("res://scene/2/planet.tscn")
 	
 	scene.module = load("res://scene/3/module.tscn")
+	
+	scene.weapon = load("res://scene/4/weapon.tscn")
 
 
 func init_vec():
@@ -253,16 +367,11 @@ func init_vec():
 	
 	vec.size.token = Vector2(vec.size.sixteen * 2)
 	vec.size.module = Vector2.ONE * num.module.a
-	vec.size.specialization = vec.size.module# * 1.25
-	vec.size.software = Vector2(vec.size.specialization)
-	vec.size.directive = Vector2(vec.size.specialization)# * 1.25
 	vec.size.clash = Vector2(vec.size.module)
-	vec.size.target = Vector2(vec.size.module)
-	vec.size.circuit = Vector2(vec.size.module)
-	vec.size.chip = Vector2(vec.size.module)
 	
 	
-	vec.size.bar = Vector2(num.module.a / 2, num.module.a * num.framework.n)
+	vec.size.pattern = Vector2(64, 32)
+	
 	
 	
 	init_window_size()
