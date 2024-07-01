@@ -81,7 +81,7 @@ func add_module(grid_: Vector2i) -> void:
 
 func update_module_neighbors() -> void:
 	for module in modules.get_children():
-		for direction in Global.dict.neighbor.linear:
+		for direction in Global.dict.direction.linear:
 			var grid = direction + module.grid
 			
 			if grids.has(grid):
@@ -99,7 +99,7 @@ func init_axes() -> void:
 		axes[type] = []
 		var index = Global.arr.axis.find(type)
 		
-		var directon = Global.dict.neighbor.linear[index]
+		var directon = Global.dict.direction.linear[index]
 		var module = nexus
 		
 		for _i in Global.num.framework.k:
@@ -126,13 +126,17 @@ func init_gems() -> void:
 			var gem = gems[_j]
 			weights[gear][gem] = Global.dict.gem.gear[_i][_j]
 	
+	
 	for module in modules.get_children():
 		var gem = "diamond"
+		var durability = Global.num.gem.durability
 		
 		if module.orientation != "nexus":
 			gem = Global.get_random_key(weights[module.gear])
+		else:
+			durability = Global.num.gem.nexus
 		
-		module.set_gem(gem)
+		module.set_gem(gem, durability)
 
 
 func init_purposes() -> void:

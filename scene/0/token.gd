@@ -32,7 +32,7 @@ func init_basic_setting(input_: Dictionary) -> void:
 	else:
 		custom_minimum_size = Vector2(Global.vec.size.token)
 	
-	init_tokens()
+	init_icons()
 	
 	if input_.has("value"):
 		value.set_number(input_.value)
@@ -51,7 +51,7 @@ func init_basic_setting(input_: Dictionary) -> void:
 		value.visible = false
 
 
-func init_tokens() -> void:
+func init_icons() -> void:
 	var input = {}
 	input.type = type
 	input.subtype = subtype
@@ -120,7 +120,7 @@ func set_type_and_subtype(type_: String, subtype_: String) -> void:
 
 func replicate(token_: MarginContainer) -> void:
 	set_type_and_subtype(token_.designation.type, token_.designation.subtype)
-	init_tokens()
+	init_icons()
 	
 	if token_.bg.visible:
 		init_bg()

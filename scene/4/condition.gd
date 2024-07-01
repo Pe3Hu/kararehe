@@ -8,6 +8,7 @@ extends MarginContainer
 @onready var values = $HBox/Values
 
 var weapon = null
+var description = null
 #endregion
 
 
@@ -20,6 +21,10 @@ func set_attributes(input_: Dictionary) -> void:
 
 func init_basic_setting(input_: Dictionary) -> void:
 	custom_minimum_size = Global.vec.size.module
+	description = {}
+	description.types = {}
+	description.values = []
+	
 	init_tokens(input_)
 	
 	for value in input_.values:
@@ -37,6 +42,7 @@ func init_tokens(input_: Dictionary) -> void:
 		input.type = condition
 		input.subtype = input_.conditions[condition]
 		token.set_attributes(input)
+		description.types[condition] = input_.conditions[condition]
 
 
 func add_value(value_: int) -> void:
@@ -49,3 +55,5 @@ func add_value(value_: int) -> void:
 	var token = Global.scene.token.instantiate()
 	values.add_child(token)
 	token.set_attributes(input)
+	description.values.append(value_)
+#endregion

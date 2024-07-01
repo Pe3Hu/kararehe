@@ -33,6 +33,7 @@ func init_arr() -> void:
 	arr.condition = ["orientation", "gear"]
 	arr.sign = ["less", "equal", "more"]
 	arr.restriction = [0, 1, 2]
+	arr.throw = [6, 8]
 
 
 func init_num() -> void:
@@ -57,10 +58,20 @@ func init_num() -> void:
 	num.pattern = {}
 	num.pattern.rotations = 4
 	
+	num.gem = {}
+	num.gem.durability = 60
+	num.gem.nexus = num.gem.durability * 10
+	
+	num.throw = {}
+	num.throw.facets = 6
+	num.throw.exception = 7
+	
+	num.resource = {}
+	num.resource.amplifier = 0.2
 
 
 func init_dict() -> void:
-	init_neighbor()
+	init_direction()
 	init_font()
 	
 	init_framework()
@@ -73,21 +84,21 @@ func init_dict() -> void:
 	init_weapon()
 
 
-func init_neighbor() -> void:
-	dict.neighbor = {}
-	dict.neighbor.linear = [
+func init_direction() -> void:
+	dict.direction = {}
+	dict.direction.linear = [
 		Vector2i( 0,-1),
 		Vector2i( 1, 0),
 		Vector2i( 0, 1),
 		Vector2i(-1, 0)
 	]
-	dict.neighbor.diagonal = [
+	dict.direction.diagonal = [
 		Vector2i( 1,-1),
 		Vector2i( 1, 1),
 		Vector2i(-1, 1),
 		Vector2i(-1,-1)
 	]
-	dict.neighbor.zero = [
+	dict.direction.zero = [
 		Vector2i( 0, 0),
 		Vector2i( 1, 0),
 		Vector2i( 1, 1),
@@ -120,6 +131,18 @@ func init_resource() -> void:
 				data[key] = resource[key]
 	
 		dict.resource.title[resource.title] = data
+	
+	
+	dict.fuel = {}
+	dict.fuel.damage = {}
+	dict.fuel.damage["laser"] = "energy"
+	dict.fuel.damage["electricity"] = "energy"
+	dict.fuel.damage["blind shell"] = "metal"
+	dict.fuel.damage["explosion"] = "metal"
+	dict.fuel.damage["fire"] = "liquid"
+	dict.fuel.damage["acid"] = "liquid"
+	
+	dict.fuel.resource = {}
 
 
 func init_framework() -> void:
@@ -173,7 +196,7 @@ func init_core() -> void:
 				var x = int(words.secondary[1])
 				var grid = Vector2i(x, y)
 				
-				dict.core.grid[grid] = core[key]
+				dict.core.grid[grid] = int(core[key])
 
 
 func init_gem() -> void:
@@ -230,7 +253,7 @@ func init_purpose() -> void:
 
 func init_vulnerability() -> void:
 	dict.vulnerability = {}
-	dict.vulnerability.title = {}
+	dict.vulnerability.damage = {}
 	var exceptions = ["title"]
 	
 	var path = "res://asset/json/kararehe_vulnerability.json"
@@ -243,7 +266,7 @@ func init_vulnerability() -> void:
 			if !exceptions.has(key):
 				data[key] = float(vulnerability[key]) / 100
 	
-		dict.vulnerability.title[vulnerability.title] = data
+		dict.vulnerability.damage[vulnerability.title] = data
 
 
 func init_pattern() -> void:
@@ -254,6 +277,7 @@ func init_pattern() -> void:
 	dict.pattern.title = {}
 	dict.pattern.rotations = {}
 	dict.pattern.reflections = {}
+	dict.pattern.turns = {}
 	var exceptions = ["title"]
 	
 	var path = "res://asset/json/kararehe_pattern.json"
@@ -289,6 +313,7 @@ func init_pattern() -> void:
 	
 	for letter in dict.pattern.title:
 		dict.pattern.rotations[letter] = []
+		dict.pattern.turns[letter] = []
 		
 		if dict.pattern.title[letter].variation != "none":
 			for _i in num.pattern.rotations:
@@ -300,6 +325,7 @@ func init_pattern() -> void:
 					rotations.append(Vector2i(rotation))
 				
 				dict.pattern.rotations[letter].append(rotations)
+				dict.pattern.turns[letter].append(rotations)
 		else:
 			dict.pattern.rotations[letter].append(dict.pattern.title[letter].directions)
 		
@@ -315,6 +341,9 @@ func init_pattern() -> void:
 					reflections.append(reflection)
 				
 				dict.pattern.reflections[letter].append(reflections)
+				dict.pattern.turns[letter].append(reflections)
+	
+	dict.pattern.turns["a"].append(dict.pattern.title["a"].directions)
 
 
 func init_weapon() -> void:
@@ -330,6 +359,7 @@ func init_weapon() -> void:
 		weapon.index = int(weapon.index)
 		var data = {}
 		data.powers = {}
+		data.avg = float(0)
 		
 		for key in weapon:
 			if !exceptions.has(key):
@@ -337,9 +367,12 @@ func init_weapon() -> void:
 				if key.contains("power"):
 					var words = key.split(" ")
 					data.powers[words[1]] = weapon[key]
+					data.avg += weapon[key]
 				else:
 					data[key] = weapon[key]
-	
+		
+		data.avg /= 2
+		
 		dict.weapon.index[weapon.index] = data
 		
 		if !dict.weapon.damage.has(weapon.damage):
@@ -359,6 +392,8 @@ func init_scene() -> void:
 	scene.module = load("res://scene/3/module.tscn")
 	
 	scene.weapon = load("res://scene/4/weapon.tscn")
+	
+	scene.pointer = load("res://scene/5/pointer.tscn")
 
 
 func init_vec():
@@ -397,6 +432,10 @@ func init_color():
 	color.specialization.sensory = Color.from_hsv(60 / h, 0.6, 0.7)
 	color.specialization.mobility = Color.from_hsv(120 / h, 0.6, 0.7)
 	color.specialization.durability = Color.from_hsv(210 / h, 0.6, 0.7)
+	
+	color.vertex = {}
+	color.vertex.actived = Color.from_hsv(120 / h, 0.8, 0.7)
+	color.vertex.disabled = Color.from_hsv(210 / h, 0.2, 0.7)
 
 
 func save(path_: String, data_: String):

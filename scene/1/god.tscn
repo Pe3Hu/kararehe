@@ -41,13 +41,28 @@ layout_mode = 2
 [node name="Framework" parent="VBox" instance=ExtResource("4_rf8jr")]
 layout_mode = 2
 
-[node name="Core" parent="VBox" instance=ExtResource("4_wiyok")]
-layout_mode = 2
-
-[node name="Arsenal" parent="VBox" instance=ExtResource("5_yt0ww")]
-layout_mode = 2
-
 [node name="HBox" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
+
+[node name="Core" parent="VBox/HBox" instance=ExtResource("4_wiyok")]
+layout_mode = 2
+
+[node name="Amplifiers" type="VBoxContainer" parent="VBox/HBox"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Metal" parent="VBox/HBox/Amplifiers" instance=ExtResource("2_i1lqr")]
+layout_mode = 2
+
+[node name="Liqud" parent="VBox/HBox/Amplifiers" instance=ExtResource("2_i1lqr")]
+layout_mode = 2
+
+[node name="Energy" parent="VBox/HBox/Amplifiers" instance=ExtResource("2_i1lqr")]
+layout_mode = 2
+
+[node name="Arsenal" parent="VBox" instance=ExtResource("5_yt0ww")]
+layout_mode = 2

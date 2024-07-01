@@ -63,8 +63,9 @@ func init_tokens() -> void:
 		token.custom_minimum_size = Global.vec.size.module
 
 
-func set_gem(subtype_: String) -> void:
+func set_gem(subtype_: String, durability_: int) -> void:
 	gem.set_subtype(subtype_)
+	gem.set_value(durability_)
 
 
 func roll_purpose() -> void:
@@ -90,3 +91,36 @@ func roll_purpose() -> void:
 
 func get_damage() -> void:
 	gear.change_value(-1)
+
+
+func check_pattern(pattern_: Array) -> bool:
+	var pattern = []
+	pattern.append_array(pattern_)
+	pattern.pop_front()
+	
+	for direction in pattern:
+		var _grid = grid + direction
+		
+		if !proprietor.grids.has(_grid):
+			return false
+	
+	return true
+
+
+func check_condition(pattern_: Array, condition_: Dictionary) -> bool:
+	var modules = []
+	
+	for direction in pattern_:
+		var _grid = grid + direction
+		var module = proprietor.grids[_grid]
+		var flags = []
+		
+		for type in condition_.types:
+			var subtype = condition_.types[type]
+			var flag = module.get(type) == subtype
+			flags.append(flag)
+		
+		if !flags.has(false):
+			modules.append(module)
+	
+	return condition_.values.has(modules.size())

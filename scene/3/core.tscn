@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c67ep20p1rp4d"]
+[gd_scene load_steps=4 format=3 uid="uid://c67ep20p1rp4d"]
 
 [ext_resource type="Script" path="res://scene/3/core.gd" id="1_ta26u"]
+[ext_resource type="PackedScene" uid="uid://c5wji4w3744nj" path="res://scene/0/token.tscn" id="2_s8rq0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -26,16 +27,38 @@ visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="Vertexs" type="GridContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBox"]
+layout_mode = 2
+
+[node name="Vertexs" type="GridContainer" parent="HBox/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 4
 
-[node name="Faces" type="GridContainer" parent="."]
+[node name="Faces" type="GridContainer" parent="HBox/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3
+
+[node name="Amplifiers" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Metal" parent="HBox/Amplifiers" instance=ExtResource("2_s8rq0")]
+layout_mode = 2
+
+[node name="Liquid" parent="HBox/Amplifiers" instance=ExtResource("2_s8rq0")]
+layout_mode = 2
+
+[node name="Energy" parent="HBox/Amplifiers" instance=ExtResource("2_s8rq0")]
+layout_mode = 2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8dq6w4wab1hh"]
+[gd_scene load_steps=5 format=3 uid="uid://b8dq6w4wab1hh"]
 
 [ext_resource type="Script" path="res://scene/5/clash.gd" id="1_kqlbt"]
 [ext_resource type="PackedScene" uid="uid://c5wji4w3744nj" path="res://scene/0/token.tscn" id="2_k7cdb"]
+[ext_resource type="PackedScene" uid="uid://3mcjgu8wckkc" path="res://scene/5/scope.tscn" id="3_uc17t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -41,4 +42,7 @@ alignment = 1
 layout_mode = 2
 
 [node name="Defense" parent="HBox/Roles" instance=ExtResource("2_k7cdb")]
+layout_mode = 2
+
+[node name="Scope" parent="HBox" instance=ExtResource("3_uc17t")]
 layout_mode = 2

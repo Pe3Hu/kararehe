@@ -4,6 +4,7 @@ extends MarginContainer
 #region var
 @onready var offense = $HBox/Roles/Offense
 @onready var defense = $HBox/Roles/Defense
+@onready var scope = $HBox/Scope
 
 var planet = null
 var gods = {}
@@ -21,6 +22,7 @@ func set_attributes(input_: Dictionary) -> void:
 func init_basic_setting() -> void:
 	var input = {}
 	input.clash = self
+	scope.set_attributes(input)
 
 
 func set_role(god_: MarginContainer, role_: String) -> void:
@@ -33,5 +35,8 @@ func set_role(god_: MarginContainer, role_: String) -> void:
 	if gods.keys().size() == 2:
 		roles["offense"].opponent = roles["defense"]
 		roles["defense"].opponent = roles["offense"]
+		
+		roles["offense"].core.roll_amplifiers()
+		scope.init_pointers()
 #end region
 

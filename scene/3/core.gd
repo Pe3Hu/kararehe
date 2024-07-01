@@ -2,12 +2,19 @@ extends MarginContainer
 
 
 #region var
-@onready var vertexs = $Vertexs
-@onready var faces = $Faces
+@onready var vertexs = $HBox/MarginContainer/Vertexs
+@onready var faces = $HBox/MarginContainer/Faces
+@onready var metal = $HBox/Amplifiers/Metal
+@onready var liquid = $HBox/Amplifiers/Liquid
+@onready var energy = $HBox/Amplifiers/Energy
 
 var god = null
 var framework = null
 var grids = {}
+var values = {}
+var throws = {}
+var liaisons = {}
+var throw = null
 #endregion
 
 
@@ -23,14 +30,28 @@ func init_basic_setting() -> void:
 
 
 func init_tokens() -> void:
+	init_amplifiers()
 	init_vertexs()
 	init_faces()
+	init_throws()
+
+
+func init_amplifiers() -> void:
+	for resource in Global.arr.resource:
+		var token = get(resource)
+		var input = {}
+		input.proprietor = self
+		input.type = "resource"
+		input.subtype = resource
+		input.value = 1.0
+		token.set_attributes(input)
 
 
 func init_vertexs() -> void:
 	vertexs.set("theme_override_constants/h_separation", Global.num.offset.vertex)
 	vertexs.set("theme_override_constants/v_separation", Global.num.offset.vertex)
 	grids.vertex = {}
+	liaisons.vertex = {}
 	
 	for _i in Global.num.core.n:
 		for _j in Global.num.core.n:
@@ -49,12 +70,20 @@ func add_vertex(grid_: Vector2i) -> void:
 	vertexs.add_child(token)
 	token.set_attributes(input)
 	grids.vertex[grid_] = token
+	
+	if !values.has(input.value):
+		values[input.value] = []
+	
+	values[input.value].append(token)
+	liaisons.vertex[token] = []
+	token.set_bg_color(Global.color.vertex.disabled)
 
 
 func init_faces() -> void:
 	faces.set("theme_override_constants/h_separation", Global.num.offset.face)
 	faces.set("theme_override_constants/v_separation", Global.num.offset.face)
 	grids.face = {}
+	liaisons.face = {}
 	var subtypes = roll_subtypes()
 	
 	for _i in Global.num.core.n - 1:
@@ -212,5 +241,66 @@ func add_face(grid_: Vector2i, subtype_: String) -> void:
 	var token = Global.scene.token.instantiate()
 	faces.add_child(token)
 	token.set_attributes(input)
+	
 	grids.face[grid_] = token
+	liaisons.face[token] = []
+	
+	for direction in Global.dict.direction.zero:
+		var _grid = grid_ + direction
+		var vertex = grids.vertex[_grid]
+		liaisons.face[token].append(vertex)
+		liaisons.vertex[vertex].append(token)
+
+
+func init_throws() -> void:
+	var facets = []
+	
+	for _i in Global.num.throw.facets:
+		facets.append(_i + 1)
+	
+	for _i in facets:
+		for _j in facets:
+			var sum = _i + _j
+			
+			if !throws.has(sum):
+				throws[sum] = 0
+			
+			throws[sum] += 1
+	
+	throws.erase(Global.num.throw.exception)
 #endregion
+
+
+func reset() -> void:
+	if throw != null:
+		var _vertexs = values[throw]
+		
+		for vertex in _vertexs:
+			vertex.set_bg_color(Global.color.vertex.disabled)
+	
+	for resource in Global.arr.resource:
+		var amplifier = get(resource)
+		amplifier.set_value(1)
+
+
+func roll_amplifiers() -> void:
+	reset()
+	throw = Global.get_random_key(throws)
+	var _vertexs = values[throw]
+	var value = Global.num.resource.amplifier
+	
+	if Global.arr.throw.has(throw):
+		value *= 2
+	
+	for vertex in _vertexs:
+		vertex.set_bg_color(Global.color.vertex.actived)
+		
+		for face in liaisons.vertex[vertex]:
+			var resource = face.designation.subtype
+			var amplifier = get(resource)
+			amplifier.change_value(value)
+
+
+func get_amplifier_value(resource_: String) -> float:
+	var amplifier = get(resource_)
+	return amplifier.get_value()

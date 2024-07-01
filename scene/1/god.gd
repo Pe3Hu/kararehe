@@ -4,7 +4,7 @@ extends MarginContainer
 #region vars
 @onready var index = $VBox/Index
 @onready var framework = $VBox/Framework
-@onready var core = $VBox/Core
+@onready var core = $VBox/HBox/Core
 @onready var arsenal = $VBox/Arsenal
 
 var pantheon = null

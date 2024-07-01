@@ -33,11 +33,6 @@ func add_god(god_: MarginContainer) -> void:
 
 
 func start_race() -> void:
-	var _god = gods.get_child(0)
-	
-	#for module in _god.framework.modules.get_children():
-		#print(module.gear.visible)
-	pass
-	#var _gods = gods.get_children()
-	#clash.set_role(_gods[0], "offense")
-	#clash.set_role(_gods[1], "defense")
+	var _gods = gods.get_children()
+	clash.set_role(_gods[0], "offense")
+	clash.set_role(_gods[1], "defense")

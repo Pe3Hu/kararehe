@@ -2,6 +2,7 @@ extends MarginContainer
 
 
 #region var
+@onready var slot = $VBox/Slot
 @onready var pattern = $VBox/HBox/Pattern
 @onready var preparation = $VBox/HBox/Preparation
 @onready var power = $VBox/Power
@@ -11,6 +12,8 @@ var arsenal = null
 var index = null
 var letter = null
 var damage = null
+var extent = null
+var fuel = null
 #endregion
 
 
@@ -31,6 +34,7 @@ func init_basic_setting() -> void:
 
 func init_tokens() -> void:
 	var description = Global.dict.weapon.index[index]
+	fuel = Global.dict.fuel.damage[description.damage]
 	
 	var input = {}
 	input.proprietor = self
@@ -43,7 +47,11 @@ func init_tokens() -> void:
 	input.subtype = "preparation"
 	input.value = description.preparation
 	preparation.set_attributes(input)
-
+	
+	input.type = "index"
+	input.subtype = "weapon"
+	input.value = arsenal.weapons.get_child_count()
+	slot.set_attributes(input)
 
 
 func init_power() -> void:
@@ -114,3 +122,9 @@ func roll_values(condition_: String) -> Array:
 	
 	return values
 #endregion
+
+
+func roll_power() -> int:
+	Global.rng.randomize()
+	var value = Global.rng.randi_range(power.minimum.get_value(), power.maximum.get_value())
+	return value

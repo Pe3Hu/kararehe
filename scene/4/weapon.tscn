@@ -34,6 +34,9 @@ layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 1
 
+[node name="Slot" parent="VBox" instance=ExtResource("2_cpe3c")]
+layout_mode = 2
+
 [node name="HBox" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 theme_override_constants/separation = 5
