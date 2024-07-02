@@ -3,6 +3,7 @@ extends MarginContainer
 
 #region var
 @onready var modules = $HBox/Modules
+@onready var bilge = $HBox/Bilge
 
 var god = null
 var core = null
@@ -11,6 +12,7 @@ var totem = null
 var grids = {}
 var axes = {}
 var doublets = {}
+var statuses = {}
 #endregion
 
 
@@ -22,11 +24,15 @@ func set_attributes(input_: Dictionary) -> void:
 
 
 func init_basic_setting() -> void:
-	totem = Global.dict.framework.title.keys()[0]#.pick_random()
+	totem = Global.dict.framework.title.keys().pick_random()
 	core = god.core
 	core.framework = self
 	
 	init_modules()
+	
+	var input = {}
+	input.framework = self
+	bilge.set_attributes(input)
 
 
 func init_modules() -> void:
@@ -145,6 +151,8 @@ func init_purposes() -> void:
 	for module in modules.get_children():
 		if module.orientation != "nexus":
 			options.append(module)
+		else:
+			module.purpose.visible = false
 	
 	options.shuffle()
 	

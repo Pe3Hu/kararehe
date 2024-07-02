@@ -49,7 +49,7 @@ func init_gems() -> void:
 		remainder = module.gem.get_value()
 	
 	var vulnerability = Global.dict.vulnerability.damage[weapon.damage]
-	var avg = Global.dict.weapon.index[weapon.index].avg
+	#var avg = Global.dict.weapon.index[weapon.index].avg
 	var amplifier = weapon.arsenal.god.core.get_amplifier_value(weapon.fuel)
 	
 	for module in modules:

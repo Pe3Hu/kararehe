@@ -86,6 +86,17 @@ func roll_purpose() -> void:
 	
 	var subtype = Global.get_random_key(weights)
 	purpose.set_subtype(subtype)
+	
+	Global.rng.randomize()
+	var value = Global.rng.randi_range(Global.num.purpose.min, Global.num.purpose.max)
+	purpose.set_value(value)
+	
+	var status = Global.dict.purpose.title[subtype].status
+	
+	if !proprietor.statuses.has(status):
+		proprietor.statuses[status] = []
+	
+	proprietor.statuses[status].append(self)
 #endregion
 
 

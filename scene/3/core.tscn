@@ -33,6 +33,7 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="HBox"]
+visible = false
 layout_mode = 2
 
 [node name="Vertexs" type="GridContainer" parent="HBox/MarginContainer"]
@@ -50,6 +51,7 @@ theme_override_constants/v_separation = 0
 columns = 3
 
 [node name="Amplifiers" type="VBoxContainer" parent="HBox"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
@@ -61,4 +63,18 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Energy" parent="HBox/Amplifiers" instance=ExtResource("2_s8rq0")]
+layout_mode = 2
+
+[node name="Aspects" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Evasion" parent="HBox/Aspects" instance=ExtResource("2_s8rq0")]
+layout_mode = 2
+
+[node name="Accuracy" parent="HBox/Aspects" instance=ExtResource("2_s8rq0")]
+layout_mode = 2
+
+[node name="Critical" parent="HBox/Aspects" instance=ExtResource("2_s8rq0")]
 layout_mode = 2

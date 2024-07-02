@@ -1,47 +1,56 @@
 [
  {
   "resource": "energy",
+  "title": "scouting",
+  "status": "targeting",
+  "target": "self"
+ },
+ {
+  "resource": "energy",
   "title": "computing",
-  "gist": "critical"
+  "status": "readiness",
+  "target": "self"
  },
  {
   "resource": "energy",
-  "title": "shielding",
-  "gist": "shield"
- },
- {
-  "resource": "energy",
-  "title": "generating",
-  "gist": "reinforcement"
+  "title": "hacking",
+  "status": "hindrance",
+  "target": "enemy"
  },
  {
   "resource": "liquid",
   "title": "accelerating",
-  "gist": "reload"
+  "status": "boost",
+  "target": "self"
  },
  {
   "resource": "liquid",
   "title": "maneuvering",
-  "gist": "evasion"
+  "status": "agility",
+  "target": "self"
  },
  {
   "resource": "liquid",
-  "title": "distilling",
-  "gist": "reinforcement"
+  "title": "cloaking",
+  "status": "stealth",
+  "target": "self"
+ },
+ {
+  "resource": "metal",
+  "title": "shielding",
+  "status": "blindness",
+  "target": "enemy"
  },
  {
   "resource": "metal",
   "title": "plating",
-  "gist": "armor"
+  "status": "fortification",
+  "target": "self"
  },
  {
   "resource": "metal",
   "title": "repairing",
-  "gist": "recovery"
- },
- {
-  "resource": "metal",
-  "title": "casting",
-  "gist": "reinforcement"
+  "status": "nanite",
+  "target": "self"
  }
 ]

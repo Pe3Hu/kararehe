@@ -7,6 +7,9 @@ extends MarginContainer
 @onready var metal = $HBox/Amplifiers/Metal
 @onready var liquid = $HBox/Amplifiers/Liquid
 @onready var energy = $HBox/Amplifiers/Energy
+@onready var evasion = $HBox/Aspects/Evasion
+@onready var accuracy = $HBox/Aspects/Accuracy
+@onready var critical = $HBox/Aspects/Critical
 
 var god = null
 var framework = null
@@ -31,6 +34,7 @@ func init_basic_setting() -> void:
 
 func init_tokens() -> void:
 	init_amplifiers()
+	init_aspects()
 	init_vertexs()
 	init_faces()
 	init_throws()
@@ -44,6 +48,17 @@ func init_amplifiers() -> void:
 		input.type = "resource"
 		input.subtype = resource
 		input.value = 1.0
+		token.set_attributes(input)
+
+
+func init_aspects() -> void:
+	for aspect in Global.arr.aspect:
+		var token = get(aspect)
+		var input = {}
+		input.proprietor = self
+		input.type = "aspect"
+		input.subtype = aspect
+		input.value = Global.num.aspect[aspect]
 		token.set_attributes(input)
 
 
@@ -268,6 +283,9 @@ func init_throws() -> void:
 			throws[sum] += 1
 	
 	throws.erase(Global.num.throw.exception)
+
+
+
 #endregion
 
 

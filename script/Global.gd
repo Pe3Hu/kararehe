@@ -34,6 +34,7 @@ func init_arr() -> void:
 	arr.sign = ["less", "equal", "more"]
 	arr.restriction = [0, 1, 2]
 	arr.throw = [6, 8]
+	arr.aspect = ["evasion", "accuracy", "critical"]
 
 
 func init_num() -> void:
@@ -68,6 +69,15 @@ func init_num() -> void:
 	
 	num.resource = {}
 	num.resource.amplifier = 0.2
+	
+	num.purpose = {}
+	num.purpose.min = 1
+	num.purpose.max = 3
+	
+	num.aspect = {}
+	num.aspect.evasion = 5
+	num.aspect.accuracy = 95
+	num.aspect.critical = 5
 
 
 func init_dict() -> void:
@@ -82,6 +92,7 @@ func init_dict() -> void:
 	init_vulnerability()
 	init_pattern()
 	init_weapon()
+	init_status()
 
 
 func init_direction() -> void:
@@ -305,11 +316,12 @@ func init_pattern() -> void:
 		if !dict.damage.pattern.has(pattern.size):
 			dict.damage.pattern[pattern.size] = {}
 		
-		for damage in data.damages:
-			if !dict.damage.pattern[pattern.size].has(damage):
-				dict.damage.pattern[pattern.size][damage] = []
-			
-			dict.damage.pattern[pattern.size][damage].append(pattern.title)
+		if data.has("damages"):
+			for damage in data.damages:
+				if !dict.damage.pattern[pattern.size].has(damage):
+					dict.damage.pattern[pattern.size][damage] = []
+				
+				dict.damage.pattern[pattern.size][damage].append(pattern.title)
 	
 	for letter in dict.pattern.title:
 		dict.pattern.rotations[letter] = []
@@ -381,6 +393,30 @@ func init_weapon() -> void:
 		dict.weapon.damage[weapon.damage].append(weapon.index)
 
 
+func init_status() -> void:
+	dict.status = {}
+	dict.status.title = {}
+	dict.status.effect = {}
+	var exceptions = ["title"]
+	
+	var path = "res://asset/json/kararehe_status.json"
+	var array = load_data(path)
+	
+	for status in array:
+		var data = {}
+		
+		for key in status:
+			if !exceptions.has(key):
+				data[key] = status[key]
+	
+		dict.status.title[status.title] = data
+		
+		if !dict.status.effect.has(status.effect):
+			dict.status.effect[status.effect] = []
+		
+		dict.status.effect[status.effect].append(status.title)
+
+
 func init_scene() -> void:
 	scene.token = load("res://scene/0/token.tscn")
 	
@@ -390,6 +426,7 @@ func init_scene() -> void:
 	scene.planet = load("res://scene/2/planet.tscn")
 	
 	scene.module = load("res://scene/3/module.tscn")
+	scene.generator = load("res://scene/3/generator.tscn")
 	
 	scene.weapon = load("res://scene/4/weapon.tscn")
 	
@@ -406,8 +443,9 @@ func init_vec():
 	
 	
 	vec.size.pattern = Vector2(64, 32)
+	vec.size.generator = Vector2(vec.size.module) * 0.5
 	
-	
+	vec.size.bar = Vector2(vec.size.generator.x * 2, vec.size.generator.y * 0.25)
 	
 	init_window_size()
 
@@ -436,6 +474,11 @@ func init_color():
 	color.vertex = {}
 	color.vertex.actived = Color.from_hsv(120 / h, 0.8, 0.7)
 	color.vertex.disabled = Color.from_hsv(210 / h, 0.2, 0.7)
+	
+	color.indicator = {}
+	color.indicator.generation = {}
+	color.indicator.generation.fill = Color.from_hsv(30 / h, 0.9, 0.7)
+	color.indicator.generation.background = Color.from_hsv(30 / h, 0.5, 0.9)
 
 
 func save(path_: String, data_: String):

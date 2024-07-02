@@ -3,75 +3,119 @@
   "title": "a",
   "size": 1,
   "variation": "none",
+  "damages": "blind shell",
+  "direction 0": "Vector2i(0,0)"
+ },
+ {
+  "title": "c",
+  "size": 2,
+  "variation": "rotation",
   "direction 0": "Vector2i(0,0)",
-  "damages": "blind shell"
+  "direction 1": "Vector2i(1,0)"
  },
  {
   "title": "l",
   "size": 3,
   "variation": "rotation",
+  "damages": "acid,laser",
   "direction 0": "Vector2i(0,0)",
   "direction 1": "Vector2i(1,0)",
-  "direction 2": "Vector2i(2,0)",
-  "damages": "acid,laser"
+  "direction 2": "Vector2i(2,0)"
  },
  {
   "title": "v",
   "size": 3,
   "variation": "reflection",
+  "damages": "acid,electricity,explosion,fire",
   "direction 0": "Vector2i(0,0)",
   "direction 1": "Vector2i(1,0)",
-  "direction 2": "Vector2i(0,1)",
-  "damages": "acid,electricity,explosion,fire"
+  "direction 2": "Vector2i(0,1)"
  },
  {
   "title": "i",
   "size": 4,
   "variation": "rotation",
+  "damages": "laser",
   "direction 0": "Vector2i(0,0)",
   "direction 1": "Vector2i(1,0)",
   "direction 2": "Vector2i(2,0)",
-  "direction 3": "Vector2i(3,0)",
-  "damages": "laser"
+  "direction 3": "Vector2i(3,0)"
  },
  {
   "title": "j",
   "size": 4,
   "variation": "reflection",
+  "damages": "fire",
   "direction 0": "Vector2i(0,0)",
   "direction 1": "Vector2i(1,0)",
   "direction 2": "Vector2i(0,1)",
-  "direction 3": "Vector2i(0,2)",
-  "damages": "fire"
+  "direction 3": "Vector2i(0,2)"
  },
  {
   "title": "t",
   "size": 4,
   "variation": "rotation",
+  "damages": "acid",
   "direction 0": "Vector2i(0,0)",
   "direction 1": "Vector2i(1,0)",
   "direction 2": "Vector2i(0,1)",
-  "direction 3": "Vector2i(-1,0)",
-  "damages": "acid"
+  "direction 3": "Vector2i(-1,0)"
  },
  {
   "title": "z",
   "size": 4,
   "variation": "reflection",
+  "damages": "electricity",
   "direction 0": "Vector2i(0,0)",
   "direction 1": "Vector2i(1,0)",
   "direction 2": "Vector2i(0,1)",
-  "direction 3": "Vector2i(-1,1)",
-  "damages": "electricity"
+  "direction 3": "Vector2i(-1,1)"
+ },
+ {
+  "title": "e",
+  "size": 4,
+  "variation": "rotation",
+  "damages": "explosion",
+  "direction 0": "Vector2i(0,0)",
+  "direction 1": "Vector2i(1,0)",
+  "direction 2": "Vector2i(0,1)",
+  "direction 3": "Vector2i(1,1)"
+ },
+ {
+  "title": "d",
+  "size": 6,
+  "variation": "reflection",
+  "direction 0": "Vector2i(0,0)",
+  "direction 1": "Vector2i(1,0)",
+  "direction 2": "Vector2i(2,0)",
+  "direction 3": "Vector2i(0,1)",
+  "direction 4": "Vector2i(1,1)",
+  "direction 5": "Vector2i(2,1)"
  },
  {
   "title": "o",
-  "size": 4,
+  "size": 8,
   "variation": "rotation",
   "direction 0": "Vector2i(0,0)",
   "direction 1": "Vector2i(1,0)",
-  "direction 2": "Vector2i(0,1)",
-  "direction 3": "Vector2i(1,1)",
-  "damages": "explosion"
+  "direction 2": "Vector2i(2,0)",
+  "direction 3": "Vector2i(2,1)",
+  "direction 4": "Vector2i(2,2)",
+  "direction 5": "Vector2i(1,2)",
+  "direction 6": "Vector2i(0,2)",
+  "direction 7": "Vector2i(0,1)"
+ },
+ {
+  "title": "r",
+  "size": 8,
+  "variation": "reflection",
+  "direction 0": "Vector2i(0,0)",
+  "direction 1": "Vector2i(1,0)",
+  "direction 2": "Vector2i(2,0)",
+  "direction 3": "Vector2i(0,1)",
+  "direction 4": "Vector2i(1,1)",
+  "direction 5": "Vector2i(2,1)",
+  "direction 6": "Vector2i(2,1)",
+  "direction 7": "Vector2i(2,1)"
  }
 ]

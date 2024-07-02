@@ -1,0 +1,74 @@
+[
+ {
+  "title": "boost",
+  "aspect": "offense",
+  "value": 30,
+  "effect": "buff"
+ },
+ {
+  "title": "weakness",
+  "aspect": "offense",
+  "value": -30,
+  "effect": "debuff"
+ },
+ {
+  "title": "agility",
+  "aspect": "evasion",
+  "value": 30,
+  "effect": "buff"
+ },
+ {
+  "title": "blindness",
+  "aspect": "accuracy",
+  "value": -30,
+  "effect": "debuff"
+ },
+ {
+  "title": "targeting",
+  "aspect": "crit",
+  "value": 30,
+  "effect": "buff"
+ },
+ {
+  "title": "readiness",
+  "aspect": "preparation",
+  "value": 30,
+  "effect": "buff"
+ },
+ {
+  "title": "hindrance",
+  "aspect": "preparation",
+  "value": -30,
+  "effect": "debuff"
+ },
+ {
+  "title": "fortification",
+  "aspect": "defense",
+  "value": 30,
+  "effect": "buff"
+ },
+ {
+  "title": "vulnerability",
+  "aspect": "defense",
+  "value": -30,
+  "effect": "debuff"
+ },
+ {
+  "title": "nanite",
+  "aspect": "durability",
+  "value": 10,
+  "effect": "buff"
+ },
+ {
+  "title": "erosion",
+  "aspect": "durability",
+  "value": -10,
+  "effect": "debuff"
+ },
+ {
+  "title": "stealth",
+  "aspect": "invisibility",
+  "value": 100,
+  "effect": "buff"
+ }
+]

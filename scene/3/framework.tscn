@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://crbittb2we813"]
+[gd_scene load_steps=4 format=3 uid="uid://crbittb2we813"]
 
 [ext_resource type="Script" path="res://scene/3/framework.gd" id="1_glchq"]
+[ext_resource type="PackedScene" uid="uid://x1sp11eed7fl" path="res://scene/3/bilge.tscn" id="2_5fhge"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2c7gi"]
 
@@ -29,6 +30,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2c7gi")
 [node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Bilge" parent="HBox" instance=ExtResource("2_5fhge")]
+layout_mode = 2
 
 [node name="Modules" type="GridContainer" parent="HBox"]
 layout_mode = 2

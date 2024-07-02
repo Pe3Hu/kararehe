@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb5lmj43sd7in"]
+
+[ext_resource type="Script" path="res://scene/3/generator.gd" id="1_mbfn0"]
+[ext_resource type="PackedScene" uid="uid://c5wji4w3744nj" path="res://scene/0/token.tscn" id="2_4e8ei"]
+[ext_resource type="PackedScene" uid="uid://bjp40dl3q1elc" path="res://scene/3/indicator.tscn" id="3_m0x2o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
+
+[node name="Generator" type="MarginContainer"]
+custom_minimum_size = Vector2(5, 5)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_mbfn0")
+
+[node name="BG" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Status" parent="VBox/HBox" instance=ExtResource("2_4e8ei")]
+layout_mode = 2
+
+[node name="Tempo" parent="VBox/HBox" instance=ExtResource("2_4e8ei")]
+layout_mode = 2
+
+[node name="Indicator" parent="VBox" instance=ExtResource("3_m0x2o")]
+layout_mode = 2
