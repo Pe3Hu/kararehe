@@ -35,6 +35,9 @@ func init_arr() -> void:
 	arr.restriction = [0, 1, 2]
 	arr.throw = [6, 8]
 	arr.aspect = ["evasion", "accuracy", "critical"]
+	#arr.offense = ["boost", "targeting", "readiness"]
+	#arr.defense = ["agility", "fortification", "nanite", "stealth"]
+	#arr.attenuation = ["weakness", "blindness", "hindrance", "vulnerability", "erosion"]
 
 
 func init_num() -> void:
@@ -120,10 +123,8 @@ func init_direction() -> void:
 func init_font() -> void:
 	dict.font = {}
 	dict.font.size = {}
-	dict.font.size["basic"] = 18
-	dict.font.size["season"] = 18
-	dict.font.size["phase"] = 18
-	dict.font.size["moon"] = 18
+	dict.font.size["basic"] = 15
+	dict.font.size["module"] = 18
 
 
 func init_resource() -> void:
@@ -396,7 +397,8 @@ func init_weapon() -> void:
 func init_status() -> void:
 	dict.status = {}
 	dict.status.title = {}
-	dict.status.effect = {}
+	dict.status.type = {}
+	dict.status.subtype = {}
 	var exceptions = ["title"]
 	
 	var path = "res://asset/json/kararehe_status.json"
@@ -411,10 +413,23 @@ func init_status() -> void:
 	
 		dict.status.title[status.title] = data
 		
-		if !dict.status.effect.has(status.effect):
-			dict.status.effect[status.effect] = []
+		if !dict.status.type.has(status.type):
+			dict.status.type[status.type] = []
 		
-		dict.status.effect[status.effect].append(status.title)
+		dict.status.type[status.type].append(status.title)
+		
+		if !dict.status.subtype.has(status.subtype):
+			dict.status.subtype[status.subtype] = []
+		
+		dict.status.subtype[status.subtype].append(status.title)
+	
+	#var types = ["offense", "defense", "attenuation"]
+	#dict.generator = {}
+	#dict.generator.effect = {}
+	#
+	#for type in types:
+		#for effect in arr[type]:
+			#dict.generator.effect[effect] = type
 
 
 func init_scene() -> void:

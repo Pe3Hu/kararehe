@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjp40dl3q1elc"]
 
-[ext_resource type="Script" path="res://scene/3/indicator.gd" id="1_kckou"]
+[ext_resource type="Script" path="res://scene/0/indicator.gd" id="1_kckou"]
 [ext_resource type="FontFile" uid="uid://deu2vlj4q8un0" path="res://asset/font/letter/Chunk Five Print.otf" id="2_lpy2f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3sqh"]

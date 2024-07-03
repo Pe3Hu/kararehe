@@ -26,7 +26,37 @@ visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="Generators" type="VBoxContainer" parent="."]
+[node name="Generators" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Onslaught" type="VBoxContainer" parent="Generators"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Buff" type="VBoxContainer" parent="Generators/Onslaught"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Debuff" type="VBoxContainer" parent="Generators/Onslaught"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Survival" type="VBoxContainer" parent="Generators"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Buff" type="VBoxContainer" parent="Generators/Survival"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Debuff" type="VBoxContainer" parent="Generators/Survival"]
+layout_mode = 2
+theme_override_constants/separation = 5
 alignment = 1

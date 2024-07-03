@@ -2,10 +2,14 @@ extends MarginContainer
 
 
 #region var
-@onready var generators = $Generators
+@onready var onslaughtBuff = $Generators/Onslaught/Buff
+@onready var onslaughtDebuff = $Generators/Onslaught/Debuff
+@onready var survivalBuff = $Generators/Survival/Buff
+@onready var survivalDebuff = $Generators/Survival/Debuff
 
 var framework = null
 var statuses = {}
+var generators = []
 #endregion
 
 
@@ -39,9 +43,14 @@ func add_generator(status_: String, tempo_: int) -> void:
 	input.status = status_
 	input.tempo = tempo_
 	
+	var description = Global.dict.status.title[status_]
+	
 	var generator = Global.scene.generator.instantiate()
-	generators.add_child(generator)
+	var _generators = get(description.subtype+description.type.capitalize())
+	_generators.add_child(generator)
 	generator.set_attributes(input)
+	
+	generators.append(generator)
 	statuses[status_] = generator
 	
 	if tempo_ == 0:

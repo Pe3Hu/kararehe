@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scene/3/generator.gd" id="1_mbfn0"]
 [ext_resource type="PackedScene" uid="uid://c5wji4w3744nj" path="res://scene/0/token.tscn" id="2_4e8ei"]
-[ext_resource type="PackedScene" uid="uid://bjp40dl3q1elc" path="res://scene/3/indicator.tscn" id="3_m0x2o"]
+[ext_resource type="PackedScene" uid="uid://bjp40dl3q1elc" path="res://scene/0/indicator.tscn" id="3_m0x2o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 

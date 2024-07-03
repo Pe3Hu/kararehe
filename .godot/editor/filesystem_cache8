@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1719942607
+::res://::1720022898
 ::res://asset/::1719584662
 default_env.tres::Environment::-1::1690116911::0::1::::<><>::
 icon.png::CompressedTexture2D::2432420761471245026::1690116911::1719584662::1::::<><>::
@@ -14,7 +14,7 @@ SwilyBright-Italic.otf::FontFile::4711532664557462683::1689611680::1719584662::1
 Chunk Five Print.otf::FontFile::7482982434189746187::1693025532::1719584662::1::::<><>::
 JosefinSans-Bold.ttf::FontFile::3888160851700023909::1693025548::1719584662::1::::<><>::
 LeagueGothic-Regular.otf::FontFile::2105460648084705691::1693025542::1719584662::1::::<><>::
-::res://asset/json/::1719940950
+::res://asset/json/::1720022050
 kararehe_compartment.json::JSON::-1::1719940360::0::1::::<><>::
 kararehe_core.json::JSON::-1::1719579980::0::1::::<><>::
 kararehe_framework.json::JSON::-1::1718946145::0::1::::<><>::
@@ -22,7 +22,7 @@ kararehe_gem.json::JSON::-1::1719578137::0::1::::<><>::
 kararehe_pattern.json::JSON::-1::1719940394::0::1::::<><>::
 kararehe_purpose.json::JSON::-1::1719940369::0::1::::<><>::
 kararehe_resource.json::JSON::-1::1719578412::0::1::::<><>::
-kararehe_status.json::JSON::-1::1719940382::0::1::::<><>::
+kararehe_status.json::JSON::-1::1720022064::0::1::::<><>::
 kararehe_vulnerability.json::JSON::-1::1719578131::0::1::::<><>::
 kararehe_weapon.json::JSON::-1::1719763725::0::1::::<><>::
 ::res://asset/png/::1719944930
@@ -95,7 +95,7 @@ blank.png::CompressedTexture2D::341937715313678637::1719683258::1719683296::1:::
 energy.png::CompressedTexture2D::4086217633022843473::1719580725::1719584662::1::::<><>::
 liquid.png::CompressedTexture2D::5496147441533981241::1719580769::1719584662::1::::<><>::
 metal.png::CompressedTexture2D::2269669804273767255::1719581043::1719584662::1::::<><>::
-::res://asset/png/status/::1719945176
+::res://asset/png/status/::1719945187
 agility.png::CompressedTexture2D::1470569038997322171::1719942138::1719945076::1::::<><>::
 blindness.png::CompressedTexture2D::7202057673329820489::1719942153::1719942519::1::::<><>::
 boost.png::CompressedTexture2D::1863886813722058852::1719942164::1719942519::1::::<><>::
@@ -118,23 +118,26 @@ maximum.png::CompressedTexture2D::6939501067698043156::1719767543::1719767702::1
 minimum.png::CompressedTexture2D::6594029949923595658::1719767561::1719767702::1::::<><>::
 preparation.png::CompressedTexture2D::9127802983954840409::1719769249::1719769265::1::::<><>::
 ::res://scene/::1719576134
-::res://scene/0/::1719943257
+::res://scene/0/::1720022931
 blank.tscn::PackedScene::706186300528003691::1703260393::0::1::::<><>::
-game.gd::GDScript::-1::1719943257::0::1::::<>Node<>::
+compartment.tscn::PackedScene::3032258337071588146::1720022931::0::1::::<><>::
+game.gd::GDScript::-1::1719945357::0::1::::<>Node<>::
 game.tscn::PackedScene::8246655032211948728::1699765042::0::1::::<><>::res://scene/0/game.gd<>uid://c8p8p11wpyu27
 icon.gd::GDScript::-1::1708241896::0::1::::<>MarginContainer<>::
 icon.tscn::PackedScene::5381527879177219912::1709234056::0::1::::<><>::res://scene/0/icon.gd<>uid://deu2vlj4q8un0::::res://asset/font/letter/Chunk Five Print.otf
+indicator.gd::GDScript::-1::1719943712::0::1::::<>MarginContainer<>::
+indicator.tscn::PackedScene::3050891556241638168::1720022897::0::1::::<><>::res://scene/0/indicator.gd<>uid://deu2vlj4q8un0::::res://asset/font/letter/Chunk Five Print.otf
 sketch.gd::GDScript::-1::1715432713::0::1::::<>MarginContainer<>::
 sketch.tscn::PackedScene::7122070728214644470::1715434125::0::1::::<><>::res://scene/0/sketch.gd<>uid://tiu625irnnwp::::res://scene/1/cradle.tscn<>uid://dccwttt6848s5::::res://scene/2/universe.tscn
 token.gd::GDScript::-1::1719849701::0::1::::<>MarginContainer<>::
 token.tscn::PackedScene::6924485284881605791::1718571144::0::1::::<><>::res://scene/0/token.gd<>uid://ciw38iqel0v5a::::res://scene/0/icon.tscn
-::res://scene/1/::1719941335
+::res://scene/1/::1720022589
 cradle.gd::GDScript::-1::1715608418::0::1::::<>MarginContainer<>::
 cradle.tscn::PackedScene::1351374215482788775::1703260768::0::1::::<><>::res://scene/1/cradle.gd
 domain.gd::GDScript::-1::1715602599::0::1::::<>MarginContainer<>::
 domain.tscn::PackedScene::7614598738883334254::1715602599::0::1::::<><>::res://scene/1/domain.gd
-god.gd::GDScript::-1::1719852864::0::1::::<>MarginContainer<>::
-god.tscn::PackedScene::4610960895289747470::1719941335::0::1::::<><>::res://scene/1/god.gd<>uid://c5wji4w3744nj::::res://scene/0/token.tscn<>uid://crbittb2we813::::res://scene/3/framework.tscn<>uid://c67ep20p1rp4d::::res://scene/3/core.tscn<>uid://n7f5v4g5732c::::res://scene/4/arsenal.tscn
+god.gd::GDScript::-1::1720022466::0::1::::<>MarginContainer<>::
+god.tscn::PackedScene::4610960895289747470::1720022589::0::1::::<><>::res://scene/1/god.gd<>uid://c5wji4w3744nj::::res://scene/0/token.tscn<>uid://crbittb2we813::::res://scene/3/framework.tscn<>uid://c67ep20p1rp4d::::res://scene/3/core.tscn<>uid://n7f5v4g5732c::::res://scene/4/arsenal.tscn
 pantheon.gd::GDScript::-1::1703261646::0::1::::<>MarginContainer<>::
 pantheon.tscn::PackedScene::6628520103918968447::1703260756::0::1::::<><>::res://scene/1/pantheon.gd
 ::res://scene/2/::1719845223
@@ -142,19 +145,17 @@ planet.gd::GDScript::-1::1719845223::0::1::::<>MarginContainer<>::
 planet.tscn::PackedScene::8830168931658770235::1719578781::0::1::::<><>::res://scene/2/planet.gd<>uid://b8dq6w4wab1hh::::res://scene/5/clash.tscn
 universe.gd::GDScript::-1::1708681831::0::1::::<>MarginContainer<>::
 universe.tscn::PackedScene::7305139226537255198::1703260870::0::1::::<><>::res://scene/2/universe.gd
-::res://scene/3/::1719944446
-bilge.tscn::PackedScene::1669138324017929485::1719944446::0::1::::<><>::res://scene/3/bilge.gd
-core.gd::GDScript::-1::1719855703::0::1::::<>MarginContainer<>::
-core.tscn::PackedScene::7015026720642285025::1719941374::0::1::::<><>::res://scene/3/core.gd<>uid://c5wji4w3744nj::::res://scene/0/token.tscn
-framework.gd::GDScript::-1::1719944280::0::1::::<>MarginContainer<>::
-framework.tscn::PackedScene::5968636753757946420::1719944446::0::1::::<><>::res://scene/3/framework.gd<>uid://x1sp11eed7fl::::res://scene/3/bilge.tscn
-generator.tscn::PackedScene::4905651378899198101::1719944446::0::1::::<><>::res://scene/3/generator.gd<>uid://c5wji4w3744nj::::res://scene/0/token.tscn<>uid://bjp40dl3q1elc::::res://scene/3/indicator.tscn
-indicator.gd::GDScript::-1::1719943712::0::1::::<>MarginContainer<>::
-indicator.tscn::PackedScene::3050891556241638168::1719943887::0::1::::<><>::res://scene/3/indicator.gd<>uid://deu2vlj4q8un0::::res://asset/font/letter/Chunk Five Print.otf
-module.gd::GDScript::-1::1719944446::0::1::::<>MarginContainer<>::
-module.tscn::PackedScene::4541679449304861037::1719944446::0::1::::<><>::res://scene/3/module.gd<>uid://c5wji4w3744nj::::res://scene/0/token.tscn
-bilge.gd::GDScript::-1::1719944338::0::1::::<>MarginContainer<>::
+::res://scene/3/::1720022897
+bilge.gd::GDScript::-1::1720022258::0::1::::<>MarginContainer<>::
+bilge.tscn::PackedScene::1669138324017929485::1720022588::0::1::::<><>::res://scene/3/bilge.gd
+core.gd::GDScript::-1::1719945357::0::1::::<>MarginContainer<>::
+core.tscn::PackedScene::7015026720642285025::1720022588::0::1::::<><>::res://scene/3/core.gd<>uid://c5wji4w3744nj::::res://scene/0/token.tscn
+framework.gd::GDScript::-1::1719945460::0::1::::<>MarginContainer<>::
+framework.tscn::PackedScene::5968636753757946420::1720022588::0::1::::<><>::res://scene/3/framework.gd<>uid://x1sp11eed7fl::::res://scene/3/bilge.tscn
 generator.gd::GDScript::-1::1719944280::0::1::::<>MarginContainer<>::
+generator.tscn::PackedScene::4905651378899198101::1720022897::0::1::::<><>::res://scene/3/generator.gd<>uid://c5wji4w3744nj::::res://scene/0/token.tscn<>uid://bjp40dl3q1elc::::res://scene/0/indicator.tscn
+module.gd::GDScript::-1::1719944446::0::1::::<>MarginContainer<>::
+module.tscn::PackedScene::4541679449304861037::1720022588::0::1::::<><>::res://scene/3/module.gd<>uid://c5wji4w3744nj::::res://scene/0/token.tscn
 ::res://scene/4/::1719941335
 arsenal.gd::GDScript::-1::1719850525::0::1::::<>MarginContainer<>::
 arsenal.tscn::PackedScene::978873362308987752::1719844759::0::1::::<><>::res://scene/4/arsenal.gd
@@ -173,6 +174,6 @@ scope.gd::GDScript::-1::1719856209::0::1::::<>MarginContainer<>::
 scope.tscn::PackedScene::1990198008609349134::1719941335::0::1::::<><>::res://scene/5/scope.gd
 ::res://scene/6/::1719577981
 ::res://scene/7/::1707430480
-::res://script/::1719944280
+::res://script/::1720022395
 Classes.gd::GDScript::-1::1718881124::0::1::::<>Node<>::
-Global.gd::GDScript::-1::1719944280::0::1::::<>Node<>::
+Global.gd::GDScript::-1::1720022395::0::1::::<>Node<>::

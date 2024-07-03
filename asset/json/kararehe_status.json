@@ -3,72 +3,84 @@
   "title": "boost",
   "aspect": "offense",
   "value": 30,
-  "effect": "buff"
+  "type": "buff",
+  "subtype": "onslaught"
  },
  {
   "title": "weakness",
   "aspect": "offense",
   "value": -30,
-  "effect": "debuff"
+  "type": "debuff",
+  "subtype": "survival"
  },
  {
   "title": "agility",
   "aspect": "evasion",
   "value": 30,
-  "effect": "buff"
+  "type": "buff",
+  "subtype": "survival"
  },
  {
   "title": "blindness",
   "aspect": "accuracy",
   "value": -30,
-  "effect": "debuff"
+  "type": "debuff",
+  "subtype": "survival"
  },
  {
   "title": "targeting",
-  "aspect": "crit",
+  "aspect": "critical",
   "value": 30,
-  "effect": "buff"
+  "type": "buff",
+  "subtype": "onslaught"
  },
  {
   "title": "readiness",
   "aspect": "preparation",
   "value": 30,
-  "effect": "buff"
+  "type": "buff",
+  "subtype": "onslaught"
  },
  {
   "title": "hindrance",
   "aspect": "preparation",
   "value": -30,
-  "effect": "debuff"
+  "type": "debuff",
+  "subtype": "survival"
  },
  {
   "title": "fortification",
   "aspect": "defense",
   "value": 30,
-  "effect": "buff"
+  "type": "buff",
+  "subtype": "survival"
  },
  {
   "title": "vulnerability",
   "aspect": "defense",
   "value": -30,
-  "effect": "debuff"
+  "type": "debuff",
+  "subtype": "onslaught"
  },
  {
   "title": "nanite",
   "aspect": "durability",
   "value": 10,
-  "effect": "buff"
+  "type": "buff",
+  "subtype": "survival"
  },
  {
   "title": "erosion",
   "aspect": "durability",
   "value": -10,
-  "effect": "debuff"
+  "type": "debuff",
+  "subtype": "onslaught"
  },
  {
   "title": "stealth",
   "aspect": "invisibility",
   "value": 100,
-  "effect": "buff"
+  "type": "buff",
+  "subtype": "onslaught"
  }
 ]
